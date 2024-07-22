@@ -1,0 +1,39 @@
+<!-- orders/templates/orders/order_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders List</title>
+</head>
+<body>
+    <h1>Orders</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Charge Amount</th>
+                <th>Date Created</th>
+                <th>QR Code</th>
+                <th>Invoice</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.charge_amount }}</td>
+                    <td>{{ order.date_created }}</td>
+                    <td>
+                        {% if order.qr_code %}
+                            <img src="{{ order.qr_code.url }}" width="50" height="50" />
+                        {% else %}
+                            No QR Code
+                        {% endif %}
+                    </td>
+                    <td>{{ order.invoice }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

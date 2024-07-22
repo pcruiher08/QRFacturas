@@ -1,0 +1,33 @@
+<!-- generador/templates/generador/factura_form.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generador de Factura</title>
+</head>
+<body>
+    <h1>Generar Factura</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        {% if form.errors %}
+            <div class="errors">
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ field.label }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <input type="hidden" name="guid" value="{{ guid }}">
+        <button type="submit">Generar Factura</button>
+    </form>
+</body>
+</html>
