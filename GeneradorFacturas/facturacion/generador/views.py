@@ -19,7 +19,9 @@ def factura_view(request):
         guid = request.GET.get('guid')
         if guid:
             try:
-                response = requests.get(f'http://127.0.0.1:8000/order-details/{guid}')
+                #response = requests.get(f'http://127.0.0.1:8000/order-details/{guid}')
+                response = requests.get(f'http://76.244.37.87:20001/order-details/{guid}')
+                
                 response.raise_for_status()  # Check if the request was successful
                 data = response.json()
 
@@ -98,7 +100,7 @@ def factura_view(request):
 
             # Send POST request
             try:
-                post_response = requests.post(f'http://127.0.0.1:8000/orders/{guid}/add_invoice/', json=json_data)
+                post_response = requests.post(f'http://76.244.37.87:20001/orders/{guid}/add_invoice/', json=json_data)
                 post_response.raise_for_status()  # Check if the request was successful
             except requests.RequestException as e:
                 logger.error(f'Error al enviar datos a la API: {e}')

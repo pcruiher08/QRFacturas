@@ -36,7 +36,9 @@ class OrderViewSet(viewsets.ModelViewSet):
         order.save()
 
         # Generar el código QR que apunta a una URL con el GUID
-        qr_url = f'http://127.0.0.1:8080/order-details/{order.id}/'
+        #qr_url = f'http://127.0.0.1:8080/order-details/{order.id}/'
+        qr_url = f'http://76.244.37.87:20002/order-details/{order.id}/'
+
         qr = qrcode.make(qr_url)
         buffer = BytesIO()
         qr.save(buffer, format='PNG')
